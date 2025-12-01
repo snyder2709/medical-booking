@@ -122,6 +122,7 @@ declare module "#app" {
         response: User;
       };
       "/api/appointments": {
+        status: string;
         success: boolean;
         message: string;
         body: FormData;

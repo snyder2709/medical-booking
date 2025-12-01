@@ -153,18 +153,21 @@ const onSubmit = form.handleSubmit(async (values) => {
       body: formData,
     });
 
+    if (data.value.status === "ok") {
+      successMessage.value = "Запись на прием успешно создана";
+
+      setTimeout(() => {
+        emit("success");
+        handleClose();
+      }, 1500);
+      return;
+    }
+
     if (!data.value.success) {
       errorMessage.value =
         data.value.message || "Не удалось создать запись на прием";
       return;
     }
-
-    successMessage.value = "Запись на прием успешно создана";
-
-    setTimeout(() => {
-      emit("success");
-      handleClose();
-    }, 1500);
   } catch (error: any) {
     errorMessage.value = "Не удалось создать запись на прием";
   } finally {

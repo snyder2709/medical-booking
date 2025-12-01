@@ -5,7 +5,7 @@ export const useAuth = () => {
   const userStore = useUserStore();
   const { user } = storeToRefs(userStore);
   const token = useCookie("auth_token");
-  const isAuthenticated = computed(() => !token);
+  const isAuthenticated = computed(() => !!user.value);
 
   const fetchUser = async (): Promise<User | null> => {
     if (!token.value) {
