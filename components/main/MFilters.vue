@@ -1,3 +1,45 @@
+<script setup lang="ts">
+import type { Specialiti } from "@/types/api";
+import { ArrowUpDown } from "lucide-vue-next";
+
+const search = defineModel<string>("search", {
+  required: true,
+  default: "",
+});
+
+const specialitie = defineModel<string>("specialitie", {
+  required: true,
+  default: "",
+});
+
+const sortBy = defineModel<string>("sortBy", {
+  required: true,
+  default: "",
+});
+
+const sortOrder = defineModel<string>("sortOrder", {
+  required: true,
+  default: "",
+});
+
+const minRating = defineModel<number>("minRating", {
+  required: true,
+  default: 0,
+});
+
+defineProps<{
+  specialities: Specialiti[];
+}>();
+
+const emit = defineEmits(["reset-filters"]);
+
+const toggleSortOrder = () => {
+  sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc";
+};
+
+const resetAll = () => emit("reset-filters");
+</script>
+
 <template>
   <Card class="mb-6">
     <CardHeader>
@@ -82,45 +124,3 @@
     </CardContent>
   </Card>
 </template>
-
-<script setup lang="ts">
-import type { Specialiti } from "@/types/api";
-import { ArrowUpDown } from "lucide-vue-next";
-
-const search = defineModel<string>("search", {
-  required: true,
-  default: "",
-});
-
-const specialitie = defineModel<string>("specialitie", {
-  required: true,
-  default: "",
-});
-
-const sortBy = defineModel<string>("sortBy", {
-  required: true,
-  default: "",
-});
-
-const sortOrder = defineModel<string>("sortOrder", {
-  required: true,
-  default: "",
-});
-
-const minRating = defineModel<number>("minRating", {
-  required: true,
-  default: 0,
-});
-
-defineProps<{
-  specialities: Specialiti[];
-}>();
-
-const emit = defineEmits(["reset-filters"]);
-
-const toggleSortOrder = () => {
-  sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc";
-};
-
-const resetAll = () => emit("reset-filters");
-</script>

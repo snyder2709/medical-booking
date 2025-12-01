@@ -1,3 +1,42 @@
+<script setup lang="ts">
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { formatSlot } from "@/lib/formatSlot";
+import type { TodaySlot } from "@/types/api";
+import { computed, ref } from "vue";
+
+interface DaySlots {
+  date: string;
+  slots: TodaySlot[];
+}
+
+const props = defineProps<{ weekSchedule: DaySlots[] }>();
+const selectedDay = ref<DaySlots | null>(null);
+
+const availableDays = computed(() =>
+  props.weekSchedule.filter((d) => d.slots.length > 0)
+);
+
+const selectDay = (day: DaySlots) => {
+  selectedDay.value = day;
+};
+
+const formatDayLabel = (dateStr: string) => {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString("ru-RU", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
+};
+</script>
+
 <template>
   <Card class="mb-6">
     <CardHeader>
@@ -51,42 +90,3 @@
     </CardContent>
   </Card>
 </template>
-
-<script setup lang="ts">
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { formatSlot } from "@/lib/formatSlot";
-import type { TodaySlot } from "@/types/api";
-import { computed, ref } from "vue";
-
-interface DaySlots {
-  date: string;
-  slots: TodaySlot[];
-}
-
-const props = defineProps<{ weekSchedule: DaySlots[] }>();
-const selectedDay = ref<DaySlots | null>(null);
-
-const availableDays = computed(() =>
-  props.weekSchedule.filter((d) => d.slots.length > 0)
-);
-
-const selectDay = (day: DaySlots) => {
-  selectedDay.value = day;
-};
-
-const formatDayLabel = (dateStr: string) => {
-  const d = new Date(dateStr);
-  return d.toLocaleDateString("ru-RU", {
-    weekday: "short",
-    day: "numeric",
-    month: "short",
-  });
-};
-</script>

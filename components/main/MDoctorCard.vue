@@ -1,3 +1,30 @@
+<script setup lang="ts">
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { formatSlot } from "@/lib/formatSlot";
+import type { Doctor, Specialiti } from "@/types/api";
+import { Star } from "lucide-vue-next";
+
+const props = defineProps<{
+  doctor: Doctor;
+  specialities: Specialiti[];
+}>();
+
+const doctorSpeciality = computed(
+  () =>
+    props.specialities.find((s) => s.id === props.doctor.specialty)?.name ||
+    "Не указано"
+);
+</script>
+
 <template>
   <Card class="hover:shadow-lg transition-shadow flex flex-col">
     <CardHeader class="flex items-start gap-4">
@@ -74,30 +101,3 @@
     </CardContent>
   </Card>
 </template>
-
-<script setup lang="ts">
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { formatSlot } from "@/lib/formatSlot";
-import type { Doctor, Specialiti } from "@/types/api";
-import { Star } from "lucide-vue-next";
-
-const props = defineProps<{
-  doctor: Doctor;
-  specialities: Specialiti[];
-}>();
-
-const doctorSpeciality = computed(
-  () =>
-    props.specialities.find((s) => s.id === props.doctor.specialty)?.name ||
-    "Не указано"
-);
-</script>

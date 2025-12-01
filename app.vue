@@ -4,6 +4,7 @@
     <NuxtPage />
   </NuxtLayout>
 </template>
+
 <script setup lang="ts" async>
 import { useApi } from "@/composables/useApi";
 import { useSpecialtyStore } from "~/stores/specialty";

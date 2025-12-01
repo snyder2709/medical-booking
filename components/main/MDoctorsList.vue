@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { Card, CardContent } from "@/components/ui/card";
+import type { Doctor, Specialiti, TodaySlot } from "@/types/api";
+import DoctorCard from "./MDoctorCard.vue";
+
+defineProps<{ doctors: Doctor[]; specialities: Specialiti[] }>();
+</script>
+
 <template>
   <div v-if="doctors.length === 0" class="mb-6">
     <Card>
@@ -17,10 +25,3 @@
     />
   </div>
 </template>
-
-<script setup lang="ts">
-import { Card, CardContent } from "@/components/ui/card";
-import type { Doctor, Specialiti, TodaySlot } from "@/types/api";
-import DoctorCard from "./MDoctorCard.vue";
-defineProps<{ doctors: Doctor[]; specialities: Specialiti[] }>();
-</script>

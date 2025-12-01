@@ -1,3 +1,17 @@
+<script setup lang="ts">
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+
+defineProps<{
+  page: number;
+  pages: number;
+  hasNext: boolean;
+  hasPrev: boolean;
+}>();
+
+defineEmits(["change"]);
+</script>
+
 <template>
   <Card>
     <CardContent class="py-4">
@@ -25,17 +39,3 @@
     </CardContent>
   </Card>
 </template>
-
-<script setup lang="ts">
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-
-defineProps<{
-  page: number;
-  pages: number;
-  hasNext: boolean;
-  hasPrev: boolean;
-}>();
-
-defineEmits(["change"]);
-</script>
