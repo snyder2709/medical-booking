@@ -11,7 +11,6 @@ import {
 const { logout, user } = useAuth();
 
 const signOut = () => {
-  console.log("asdasd");
   logout();
 };
 </script>
@@ -24,7 +23,6 @@ const signOut = () => {
       <NuxtLink to="/" class="flex items-center space-x-2">
         <span class="text-xl font-bold">МедБукинг</span>
       </NuxtLink>
-      <!-- Dropdown с пользователем -->
 
       <DropdownMenu v-if="user !== null">
         <DropdownMenuTrigger asChild>
