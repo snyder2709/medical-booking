@@ -289,11 +289,11 @@ const {
   },
 });
 
-const { specialities } = storeToRefs(store);
+const { specialtyes } = storeToRefs(store);
 
 const doctorSpeciality = computed(
   () =>
-    specialities.value.find((s) => s.id === doctor.value.specialty)?.name ||
+    specialtyes.value.find((s) => s.id === doctor.value.specialty)?.name ||
     "Не указано"
 );
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Card, CardContent } from "@/components/ui/card";
-import type { Doctor, Specialiti, TodaySlot } from "@/types/api";
+import type { Doctor, Specialty, TodaySlot } from "@/types/api";
 import DoctorCard from "./MDoctorCard.vue";
 
-defineProps<{ doctors: Doctor[]; specialities: Specialiti[] }>();
+defineProps<{ doctors: Doctor[]; specialtyes: Specialty[] }>();
 </script>
 
 <template>
@@ -20,7 +20,7 @@ defineProps<{ doctors: Doctor[]; specialities: Specialiti[] }>();
       v-for="doctor in doctors"
       :key="doctor.id"
       :doctor="doctor"
-      :specialities="specialities"
+      :specialtyes="specialtyes"
       @select-slot="(slot: TodaySlot) => $emit('select-slot', slot)"
     />
   </div>

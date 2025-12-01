@@ -1,14 +1,14 @@
-import type { Specialiti } from "@/types/api";
+import type { Specialty } from "@/types/api";
 
 export const useSpecialtyStore = defineStore("specialty", () => {
-  const specialities = ref<Specialiti[]>([]);
+  const specialtyes = ref<Specialty[]>([]);
 
-  const setSpecialities = (data: Specialiti[]) => {
-    specialities.value = data;
+  const setSpecialtyes = (data: Specialty[]) => {
+    specialtyes.value = data;
   };
 
   return {
-    specialities,
-    setSpecialities,
+    specialtyes,
+    setSpecialtyes,
   };
 });

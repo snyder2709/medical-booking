@@ -7,11 +7,11 @@
 
     <MFilters
       v-model:search="search"
-      v-model:specialitie="query.specialty"
+      v-model:specialtye="query.specialty"
       v-model:sortBy="query.sortBy"
       v-model:sortOrder="query.sortOrder"
       v-model:minRating="minRating"
-      :specialities="specialities"
+      :specialtyes="specialtyes"
       @reset-filters="resetFilters"
     />
 
@@ -30,7 +30,7 @@
     <template v-else>
       <DoctorsList
         :doctors="data.doctors"
-        :specialities="specialities"
+        :specialtyes="specialtyes"
         @select-slot="openAppointmentModal"
       />
 
@@ -66,7 +66,7 @@ import { storeToRefs } from "pinia";
 import { useSpecialtyStore } from "~/stores/specialty";
 const route = useRoute();
 const store = useSpecialtyStore();
-const { specialities } = storeToRefs(store);
+const { specialtyes } = storeToRefs(store);
 
 const search = ref<string>((route.query.search as string) || "");
 const debouncedSearch = refDebounced(search, 500);

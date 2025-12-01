@@ -1,4 +1,4 @@
-export interface DoctorsRequest {
+export interface DoctorsResponce {
   doctors: Doctor[];
   pagination: Pagination;
 }
@@ -24,7 +24,7 @@ export interface TodaySlot {
   endTime: string;
 }
 
-export interface ReviewQuery {
+export interface ReviewResponce {
   reviews: Review[];
   pagination: Pagination;
 }
@@ -48,7 +48,7 @@ export interface Review {
   date: string;
 }
 
-export interface Specialiti {
+export interface Specialty {
   id: string;
   name: string;
 }
@@ -86,6 +86,19 @@ export interface User {
   registrationDate: string;
 }
 
+export interface Reviews {
+  id: string;
+  patientName: string;
+  rating: number;
+  comment: string;
+  date: string;
+}
+
+export interface ReviewsResponce {
+  reviews: Review[];
+  pagination: Pagination;
+}
+
 type ID = string;
 type DoctorDetailPath = `/api/doctors/${ID}`;
 type DoctorSchedulePath = `/api/doctors/${ID}/schedule`;
@@ -95,11 +108,11 @@ declare module "#app" {
   interface NuxtApp {
     $apiTypes: {
       "/api/doctors": {
-        response: DoctorsRequest;
+        response: DoctorsResponce;
         query: DoctorsQuery;
       };
       "/api/specialties": {
-        response: Specialiti[];
+        response: Specialty[];
       };
       "/api/auth/login": {
         body: UserBody;
@@ -117,11 +130,11 @@ declare module "#app" {
         response: Doctor;
       };
       [key: DoctorSchedulePath]: {
-        response: SchedulesRequest;
+        response: TodaySlot[];
       };
       [key: DoctorReviewsPath]: {
-        response: ReviewsRequest;
-        query: ReviewsQuery;
+        response: ReviewsResponce;
+        query: Pick<Query, "page" | "sortBy" | "sortOrder">;
       };
     };
   }

@@ -10,17 +10,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { formatSlot } from "@/lib/formatSlot";
-import type { Doctor, Specialiti } from "@/types/api";
+import type { Doctor, Specialty } from "@/types/api";
 import { Star } from "lucide-vue-next";
 
 const props = defineProps<{
   doctor: Doctor;
-  specialities: Specialiti[];
+  specialtyes: Specialty[];
 }>();
 
 const doctorSpeciality = computed(
   () =>
-    props.specialities.find((s) => s.id === props.doctor.specialty)?.name ||
+    props.specialtyes.find((s) => s.id === props.doctor.specialty)?.name ||
     "Не указано"
 );
 </script>

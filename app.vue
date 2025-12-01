@@ -14,7 +14,7 @@ const store = useSpecialtyStore();
 const { data, error } = await useApi("/api/specialties");
 
 if (data.value) {
-  store.setSpecialities(data.value);
+  store.setSpecialtyes(data.value);
 }
 
 if (error.value) {

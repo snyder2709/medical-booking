@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Specialiti } from "@/types/api";
+import type { Specialty } from "@/types/api";
 import { ArrowUpDown } from "lucide-vue-next";
 
 const search = defineModel<string>("search", {
@@ -7,7 +7,7 @@ const search = defineModel<string>("search", {
   default: "",
 });
 
-const specialitie = defineModel<string>("specialitie", {
+const specialtye = defineModel<string>("specialtye", {
   required: true,
   default: "",
 });
@@ -28,7 +28,7 @@ const minRating = defineModel<number>("minRating", {
 });
 
 defineProps<{
-  specialities: Specialiti[];
+  specialtyes: Specialty[];
 }>();
 
 const emit = defineEmits(["reset-filters"]);
@@ -57,7 +57,7 @@ const resetAll = () => emit("reset-filters");
 
         <div class="space-y-2">
           <label class="text-sm font-medium">Специальность</label>
-          <Select v-model="specialitie">
+          <Select v-model="specialtye">
             <SelectTrigger class="w-full">
               <SelectValue placeholder="Выберите специальность" />
             </SelectTrigger>
@@ -66,7 +66,7 @@ const resetAll = () => emit("reset-filters");
               <SelectLabel>Специальности</SelectLabel>
 
               <SelectItem
-                v-for="item in specialities"
+                v-for="item in specialtyes"
                 :key="item.id"
                 :value="item.id"
               >
